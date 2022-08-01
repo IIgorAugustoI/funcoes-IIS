@@ -1,0 +1,6 @@
+$funcoes = (Get-WindowsOptionalFeature -Online | Where-Object {$_.FeatureName -like "IIS*"} | Select-Object FeatureName)
+$funcoes -replace '@{FeatureName=' -replace '}'
+foreach($funcoes in $funcao)
+{
+    Enable-WindowsOptionalFeature -Online -FeatureName $funcoes
+}
